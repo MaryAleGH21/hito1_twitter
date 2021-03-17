@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-10.times do |u|
-  Tweet.create(content: "Contenido #{u}")
+user = User.create(name:"Alejandra",photo:"https://www.govisitcostarica.co.cr/images/photos/mob-pura-vida-puerto-viejo-costa-rica.jpg", email:"hola@hola.com", password: "123456")
+
+100.times do |i|
+  Tweet.create(content:"contenido#{i}", user_id:user.id)
 end
