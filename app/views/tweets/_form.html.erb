@@ -11,14 +11,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
+    <div class="form-group">
+    <%= form.text_area :content, class:'form-control', placeholder: 'Content' %>
+    </div>
 
-  <div class="field">
-    <%= form.label :photo %>
-    <%= form.text_field :photo %>
+  <div class="form-group">
+    <%= form.text_field :photo, class:'form-control', placeholder: 'Photo' %>
   </div>
  
 
