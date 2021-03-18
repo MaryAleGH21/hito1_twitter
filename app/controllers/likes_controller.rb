@@ -2,22 +2,17 @@ class LikesController < ApplicationController
 
   def create
     @tweet = Tweet.find(params[:tweet_id])
-    puts @tweet
-    puts "======="
     @like = Like.new(user: current_user, tweet: @tweet)
 
       if @like.save
          redirect_to @tweet, notice: "Like was successfully created." 
       else
-        @tweet.errors.each do |i|
-        puts x
-        end
         redirect_to @tweet, notice: "Error wasn't successfully created."
       end
   end
   
   def destroy 
-    @like = Like.find(params[:id])
+    @like = Like.find params[:id]
     @like.destroy
     respond_to do |format|
       format.html { redirect_to tweets_url, notice: "Like was successfully destroyed." }

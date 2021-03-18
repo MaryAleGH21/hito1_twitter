@@ -29,6 +29,7 @@
   </tbody>
 </table>
 
+<%= link_to 'New Tweet', new_tweet_path, class: 'btn btn-info text-white' %>
 <br>
 
-<%= link_to 'New Tweet', new_tweet_path, class: 'btn btn-info text-white' %>
+<%= paginate @tweets %>

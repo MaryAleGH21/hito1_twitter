@@ -3,7 +3,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets or /tweets.json
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.all.page(params[:page])
   end
 
   # GET /tweets/1 or /tweets/1.json
@@ -65,6 +65,6 @@ class TweetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tweet_params
-      params.require(:tweet).permit(:user_id, :content)
+      params.require(:tweet).permit(:user_id, :content, :page)
     end
 end
