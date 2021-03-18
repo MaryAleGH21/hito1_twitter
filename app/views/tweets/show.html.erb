@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tweet.user_id %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @tweet.content %>
+</p>
+
+<p>
+  <strong>Photo:</strong>
+  <%= @tweet.photo %>
+</p>
+
+<p>
+  <strong>Likes:</strong>
+  <%= @tweet.likes.count %>
+</p>
+
+ 
+
+<%= link_to 'Edit', edit_tweet_path(@tweet), class: "btn btn-secondary text-white" %> |
+<%= link_to 'Back', tweets_path,class: "btn btn-info text-white"  %> |
+
+
+<% like = @tweet.likes.where(user: current_user)%>
+<% if like.present? %>
+  <%= link_to 'Dislike', tweet_like_path(@tweet, like.first.id), method: :delete  %>
+<% else %>
+  <%= link_to 'Like', tweet_likes_path(@tweet, like), method: :post  %>
+<% end %>
