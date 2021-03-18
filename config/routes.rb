@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :tweets do
     resources :likes, only:[:create, :destroy]
     member do
       post 'created_rt'
     end
+  end
+  resources :friends do 
+    resources :user 
   end
   devise_for :users
   root to: "tweets#index"
