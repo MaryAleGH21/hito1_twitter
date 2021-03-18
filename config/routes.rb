@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :tweets do
     resources :likes, only:[:create, :destroy]
+    member do
+      post 'created_rt'
+    end
   end
   devise_for :users
   root to: "tweets#index"

@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[index]
 
   # GET /tweets or /tweets.json
   def index
@@ -14,6 +15,16 @@ class TweetsController < ApplicationController
   def new
     @tweet = Tweet.new
   end
+
+  def rt 
+     @tweet.retweets.build(user_id: current_user, content: "")
+    if @tweet.save
+      redirect_to root_path
+    end
+  end
+    
+
+
 
   # GET /tweets/1/edit
   def edit
