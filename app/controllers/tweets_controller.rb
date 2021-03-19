@@ -4,11 +4,15 @@ class TweetsController < ApplicationController
 
   # GET /tweets or /tweets.json
   def index
-    @tweets = Tweet.all.page(params[:page])  
-    #@tweets = Tweet.where
-  
+    
+    @q = params[:q]
+    if @q
+    @tweets = Tweet.where(:content => @q).page(params[:page])
+    else
+    @tweets = Tweet.all.page(params[:page])
+    end
   end
-
+  
   # GET /tweets/1 or /tweets/1.json
   def show
   end
@@ -24,7 +28,13 @@ class TweetsController < ApplicationController
       redirect_to root_path
     end
   end
-    
+  
+  def ver_hashtag
+    content.split('').each do |tag|
+      puts tag 
+    end
+    content[0]
+  end
 
 
 
